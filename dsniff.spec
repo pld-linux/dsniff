@@ -2,7 +2,7 @@ Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Name:		dsniff
 Version:	2.4
-Release:	0.b1.2
+Release:	0.b1.3
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/%{name}/beta/%{name}-%{version}b1.tar.gz
@@ -38,7 +38,7 @@ Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}
-Requires:	netscape-navigator
+Requires:	mozilla
 
 %description webspy
 webspy sends URLs sniffed from a client to your local Netscape browser
