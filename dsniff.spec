@@ -5,10 +5,6 @@ Version:	2.3
 Release:	5
 License:	BSD
 Group:		Networking/Utilities
-Group(de):	Netzwerkwesen/Werkzeuge
-Group(es):	Red/Utilitarios
-Group(pl):	Sieciowe/Narzêdzia
-Group(pt_BR):	Rede/Utilitários
 Source0:	http://www.monkey.org/~dugsong/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-slist.patch
 Patch1:		%{name}-headers.patch
@@ -36,10 +32,6 @@ oprogramowania.
 Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Group:		Networking/Utilities
-Group(de):	Netzwerkwesen/Werkzeuge
-Group(es):	Red/Utilitarios
-Group(pl):	Sieciowe/Narzêdzia
-Group(pt_BR):	Rede/Utilitários
 Requires:	%{name} = %{version}
 Requires:	netscape-navigator
 
