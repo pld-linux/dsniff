@@ -56,6 +56,8 @@ Netscape musi byæ wcze¶niej uruchomiony na lokalnym serwerze X.
 
 %build
 autoheader
+aclocal
+autoconf
 CFLAGS="%{rpmcflags} -I./missing"
 %configure \
 	--libdir=%{_datadir}/%{name}
