@@ -2,13 +2,14 @@ Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Name:		dsniff
 Version:	2.3
-Release:	7
+Release:	8
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-slist.patch
 Patch1:		%{name}-headers.patch
 Patch2:		%{name}-ac.patch
+#ggsniff 1.2 from http://ggsniff.sourceforge.net/
 Patch3:		%{name}-gg.patch
 URL:		http://www.monkey.org/~dugsong/
 BuildRequires:	XFree86-devel
