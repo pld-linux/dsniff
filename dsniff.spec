@@ -29,7 +29,7 @@ network protocols. Please do not abuse this software.
 
 %description -l pl
 Narzêdzia do kontroli sieci oraz demonstracji braku zabezpieczeñ w
-nieszyfrowanych protoko³ach sieciowych. Proszê nie nadu¿ywac tego
+nieszyfrowanych protoko³ach sieciowych. Proszê nie nadu¿ywaæ tego
 oprogramowania.
 
 %package webspy
@@ -49,10 +49,10 @@ for display, updated in real-time (as the target surfs, your browser
 surfs along with them, automagically). Netscape must be running on
 your local X display ahead of time.
 
-%description -l pl webspy
+%description webspy -l pl
 webspy przesy³a pods³uchane URLe do wy¶wietlenia w lokalnie
 uruchomionej przegl±darce Netscape Navigator. Adresy s± uaktualniane
-na bierz±co (a wiêc przegl±dasz strony równolegle z pods³uchiwanym).
+na bie¿±co (a wiêc przegl±dasz strony równolegle z pods³uchiwanym).
 Netscape musi byæ wcze¶niej uruchomiony na lokalnym serwerze X.
 
 %prep
