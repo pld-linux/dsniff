@@ -19,8 +19,6 @@ BuildRequires:	glibc-static
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_sysconfdir		/etc/%{name}
-
 %description
 Tools to audit network and to demonstrate the insecurity of cleartext
 network protocols. Please do not abuse this software.
@@ -72,9 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz
 %attr(755,root,root) %{_sbindir}/[a-u]*
 %attr(755,root,root) %{_sbindir}/webmitm
-%dir %{_sysconfdir}
-%config(noreplace) %{_sysconfdir}/*
-%{_datadir}/%{name}/*
+%{_datadir}/%{name}
 %{_mandir}/man8/[a-u]*
 %{_mandir}/man8/webmitm*
 
