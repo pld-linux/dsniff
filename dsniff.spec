@@ -2,12 +2,13 @@ Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Name:		dsniff
 Version:	2.3
-Release:	5
+Release:	6
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-slist.patch
 Patch1:		%{name}-headers.patch
+Patch2:		%{name}-ac.patch
 URL:		http://www.monkey.org/~dugsong/
 BuildRequires:	XFree86-devel
 BuildRequires:	libpcap-devel
@@ -51,6 +52,7 @@ Netscape musi byæ wcze¶niej uruchomiony na lokalnym serwerze X.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 autoheader
