@@ -1,0 +1,154 @@
+diff -urN dsniff-2.3/msgsnarf.8 dsniff-2.3-gg/msgsnarf.8
+--- dsniff-2.3/msgsnarf.8	Sun Nov 19 07:10:50 2000
++++ dsniff-2.3-gg/msgsnarf.8	Tue Mar 26 11:29:29 2002
+@@ -14,7 +14,7 @@
+ .ad
+ .fi
+ \fBmsgsnarf\fR records selected messages from AOL Instant
+-Messenger, ICQ 2000, IRC, MSN Messenger, or Yahoo Messenger chat
++Messenger, ICQ 2000, IRC, MSN Messenger, Gadu-Gadu, or Yahoo Messenger chat
+ sessions.
+ .SH OPTIONS
+ .IP "\fB-i \fIinterface\fR"
+diff -urN dsniff-2.3/msgsnarf.c dsniff-2.3-gg/msgsnarf.c
+--- dsniff-2.3/msgsnarf.c	Fri Dec 15 21:12:19 2000
++++ dsniff-2.3-gg/msgsnarf.c	Tue Mar 26 14:09:13 2002
+@@ -1,10 +1,13 @@
+ /*
+   msgsnarf.c
+ 
+-  Sniff chat messages (AIM, ICQ, IRC, MSN, Yahoo) on a network.
++  Sniff chat messages (AIM, ICQ, IRC, MSN, Yahoo, Gadu-Gadu) on a network.
+ 
+   Copyright (c) 1999 Dug Song <dugsong@monkey.org>
+-  
++
++  2002.03.20 - support for Gadu-Gadu messages added by Ryba <ryba_84@hotmail.com>
++  (based on protocol description from EKG, http://dev.null.pl/ekg/)
++
+   $Id$
+ */
+ 
+@@ -544,6 +547,112 @@
+ 	return (len - buf_len(&buf));
+ }
+ 
++
++/*
++  Support for GG messages added by Ryba <ryba_84@hotmail.com>
++  v1.0
++
++  Protocol description taken from EKG (http://dev.null.pl/ekg/)
++  by <wojtekka@irc.pl>, <speedy@atman.pl> and others.
++  Thanks to all of them!
++
++  Gadu-Gadu (http://www.gadu-gadu.pl) is a Polish communicator.
++  I believe it is most popular instant messenger in Poland.
++*/
++
++#define GG_LOGIN 0x000c
++#define GG_SEND_MSG 0x000b
++#define GG_RECV_MSG 0x000a
++        
++struct gg_header {
++  int type;          
++  int length;        
++};
++
++struct gg_send_msg {
++  int recipient;
++  int seq;
++  int class;
++//  char message[];
++};
++
++struct gg_recv_msg {
++  int sender;
++  int seq;
++  int time;
++  int class;
++//  char message[];
++};
++
++struct gg_login {
++  int uin;       
++  int hash;      
++  int status;    
++  int version;   
++  int local_ip;  
++  u_short local_port;
++};
++
++int process_gg(struct client_info *info, u_char *data, int len) {
++
++  struct buf *msg, buf;
++  struct gg_header *header;
++  struct gg_send_msg *send_msg;
++  struct gg_recv_msg *recv_msg;
++  struct gg_login *login;
++  struct in_addr addr;
++  char *p;
++  char sbuff [10];
++  int i;
++  
++  buf_init(&buf, data, len);
++  
++  while (buf_len(&buf) > sizeof(*header)) {
++    header = (struct gg_header *)buf_ptr(&buf);
++    i = sizeof(*header) + header->length;
++    
++    if ((msg = buf_tok(&buf, NULL, i)) == NULL)
++      break;
++    
++    buf_skip(msg, sizeof(*header));
++
++    if (header->type == GG_LOGIN && header->length == 22) {
++    
++      login = (struct gg_login *)buf_ptr(msg);
++      addr.s_addr = login->local_ip;
++
++      if (info->nick) free(info->nick);
++      snprintf(sbuff, 10, "%u", login->uin);
++      info->nick = strdup(sbuff);
++    } else
++    
++    if (header->type == GG_SEND_MSG) {
++      send_msg = (struct gg_send_msg *)buf_ptr(msg);
++      buf_skip(msg, sizeof(*send_msg));
++      
++      p = buf_strdup(msg);          
++      if (regex_match(p)) {
++        printf("%s GG %s > %u: %s\n", timestamp(), info->nick, send_msg->recipient, p);
++      }
++      if (p) free(p);
++    } else
++
++    if (header->type == GG_RECV_MSG) {
++      recv_msg = (struct gg_recv_msg *)buf_ptr(msg);
++      buf_skip(msg, sizeof(*recv_msg));
++      
++      p = buf_strdup(msg);          
++      if (regex_match(p)) {
++        printf("%s GG %s < %u: %s\n", timestamp(), info->nick, recv_msg->sender, p);
++      }
++      if (p) free(p);
++    }
++  }
++   
++  return(len - buf_len(&buf));
++}
++
++
+ void
+ sniff_msgs(struct tcp_stream *ts, void **conn_save)
+ {
+@@ -562,6 +671,9 @@
+ 	}
+ 	else if (ts->addr.dest == 1863) {
+ 		process_msgs = process_msn;
++	}
++	else if (ts->addr.dest == 8074 || ts->addr.source == 8074) {
++	  process_msgs = process_gg;
+ 	}
+ 	else return;
+ 	
