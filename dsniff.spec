@@ -23,7 +23,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Tools to audit network and to demonstrate the insecurity of cleartext
 network protocols. Please do not abuse this software.
 
-%description -l -l
+%description -l pl
 Narzêdzia do kontroli sieci oraz demonstracji braku zabezpieczeñ w
 nieszyfrowanych protoko³ach sieciowych. Proszê nie nadu¿ywac tego
 oprogramowania.
@@ -35,12 +35,19 @@ Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
 Group(pl):	Sieciowe/Narzêdzia
 Requires:	%{name} = %{version}
+Requires:	netscape-navigator
 
 %description webspy
 webspy sends URLs sniffed from a client to your local Netscape browser
 for display, updated in real-time (as the target surfs, your browser
-surfs along with them, automag€ ically). Netscape must be running on
+surfs along with them, automagically). Netscape must be running on
 your local X display ahead of time.
+
+%description -l pl webspy
+webspy przesy³a pods³uchane URLe do wy¶wietlenia w lokalnie
+uruchomionej przegl±darce Netscape Navigator. Adresy s± uaktualniane
+na bierz±co (a wiêc przegl±dasz strony równolegle z pods³uchiwanym).
+Netscape musi byæ wcze¶niej uruchomiony na lokalnym serwerze X.
 
 %prep
 %setup -q
