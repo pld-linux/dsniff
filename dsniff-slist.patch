@@ -1,0 +1,92 @@
+diff -urN dsniff-2.3.org/dnsspoof.c dsniff-2.3/dnsspoof.c
+--- dsniff-2.3.org/dnsspoof.c	Wed Dec 20 23:59:36 2000
++++ dsniff-2.3/dnsspoof.c	Thu Dec 21 00:11:04 2000
+@@ -23,6 +23,7 @@
+ #include <err.h>
+ #include <libnet.h>
+ #include <pcap.h>
++#include "slist.h"
+ #include "pcaputil.h"
+ #include "version.h"
+ 
+diff -urN dsniff-2.3.org/msgsnarf.c dsniff-2.3/msgsnarf.c
+--- dsniff-2.3.org/msgsnarf.c	Wed Dec 20 23:59:36 2000
++++ dsniff-2.3/msgsnarf.c	Thu Dec 21 00:11:19 2000
+@@ -21,6 +21,7 @@
+ #include <nids.h>
+ #include <pcap.h>
+ #include <pcaputil.h>
++#include "slist.h"
+ #include "buf.h"
+ #include "decode.h"
+ #include "version.h"
+diff -urN dsniff-2.3.org/record.c dsniff-2.3/record.c
+--- dsniff-2.3.org/record.c	Wed Dec 20 23:59:36 2000
++++ dsniff-2.3/record.c	Thu Dec 21 00:13:29 2000
+@@ -12,6 +12,7 @@
+ #include <rpc/rpc.h>
+ #include <stdio.h>
+ #include <time.h>
++#include <md5global.h>
+ #include <md5.h>
+ #ifdef HAVE_DB_185_H
+ #define DB_LIBRARY_COMPATIBILITY_API
+diff -urN dsniff-2.3.org/slist.h dsniff-2.3/slist.h
+--- dsniff-2.3.org/slist.h	Thu Jan  1 01:00:00 1970
++++ dsniff-2.3/slist.h	Thu Dec 21 00:07:48 2000
+@@ -0,0 +1,55 @@
++#ifndef SLIST_HEAD
++
++/*
++ * Singly-linked List definitions.
++ */
++#define SLIST_HEAD(name, type)						\
++struct name {								\
++	struct type *slh_first;	/* first element */			\
++}
++ 
++#define	SLIST_HEAD_INITIALIZER(head)					\
++	{ NULL }
++ 
++#define SLIST_ENTRY(type)						\
++struct {								\
++	struct type *sle_next;	/* next element */			\
++}
++ 
++/*
++ * Singly-linked List access methods.
++ */
++#define	SLIST_FIRST(head)	((head)->slh_first)
++#define	SLIST_END(head)		NULL
++#define	SLIST_EMPTY(head)	(SLIST_FIRST(head) == SLIST_END(head))
++#define	SLIST_NEXT(elm, field)	((elm)->field.sle_next)
++
++#define	SLIST_FOREACH(var, head, field)					\
++	for((var) = SLIST_FIRST(head);					\
++	    (var) != SLIST_END(head);					\
++	    (var) = SLIST_NEXT(var, field))
++
++/*
++ * Singly-linked List functions.
++ */
++#define	SLIST_INIT(head) {						\
++	SLIST_FIRST(head) = SLIST_END(head);				\
++}
++
++#define	SLIST_INSERT_AFTER(slistelm, elm, field) do {			\
++	(elm)->field.sle_next = (slistelm)->field.sle_next;		\
++	(slistelm)->field.sle_next = (elm);				\
++} while (0)
++
++#define	SLIST_INSERT_HEAD(head, elm, field) do {			\
++	(elm)->field.sle_next = (head)->slh_first;			\
++	(head)->slh_first = (elm);					\
++} while (0)
++
++#define	SLIST_REMOVE_HEAD(head, field) do {				\
++	(head)->slh_first = (head)->slh_first->field.sle_next;		\
++} while (0)
++
++#endif
++
++
