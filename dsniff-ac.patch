@@ -1,5 +1,6 @@
---- dsniff-2.3/configure.in.org	Sun Dec  3 05:16:50 2000
-+++ dsniff-2.3/configure.in	Sun Aug  4 15:07:07 2002
+diff -urN dsniff-2.4.org/configure.in dsniff-2.4/configure.in
+--- dsniff-2.4.org/configure.in	2003-11-08 22:37:23.000000000 +0100
++++ dsniff-2.4/configure.in	2003-11-08 22:38:34.000000000 +0100
 @@ -61,17 +61,17 @@
  needmd5=no
  AC_CHECK_FUNCS(MD5Update, , [needmd5=yes])
