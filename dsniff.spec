@@ -2,7 +2,7 @@ Summary:	Network audit tools.
 Summary(pl):	Narzêdzia do kontroli sieci
 Name:		dsniff
 Version:	2.3
-Release:	2
+Release:	3
 License:	BSD
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
@@ -10,6 +10,7 @@ Group(pl):	Sieciowe/Narzêdzia
 Source0:	http://www.monkey.org/~dugsong/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-slist.patch
 Patch1:		%{name}-headers.patch
+Patch2:		%{name}-etc.patch
 URL:		http://www.monkey.org/~dugsong/
 BuildRequires:	XFree86-devel
 BuildRequires:	libpcap-devel
@@ -17,6 +18,8 @@ BuildRequires:	libnids-devel
 BuildRequires:	libnet-devel
 BuildRequires:	glibc-static
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_sysconfdir		/etc/%{name}
 
 %description
 Tools to audit network and to demonstrate the insecurity of cleartext
@@ -28,7 +31,7 @@ nieszyfrowanych protoko³ach sieciowych. Proszê nie nadu¿ywac tego
 oprogramowania.
 
 %package webspy
-Summary:	Network audit tools.
+Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
@@ -45,9 +48,11 @@ your local X display ahead of time.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 autoheader
+CFLAGS="%{rpmcflags} -I./missing"
 %configure \
 	--libdir=%{_datadir}/%{name}
 %{__make}
@@ -65,9 +70,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README*
+%doc *.gz
 %attr(755,root,root) %{_sbindir}/[a-u]*
 %attr(755,root,root) %{_sbindir}/webmitm
+%dir %{_sysconfdir}
+%config(noreplace) %{_sysconfdir}/*
 %{_datadir}/%{name}/*
 %{_mandir}/man8/[a-u]*
 %{_mandir}/man8/webmitm*
