@@ -1,0 +1,10 @@
+--- dsniff-2.3/record.c~	Wed Dec 27 03:16:18 2000
++++ dsniff-2.3/record.c	Wed Dec 27 03:16:24 2000
+@@ -12,7 +12,6 @@
+ #include <rpc/rpc.h>
+ #include <stdio.h>
+ #include <time.h>
+-#include <md5global.h>
+ #include <md5.h>
+ #ifdef HAVE_DB_185_H
+ #define DB_LIBRARY_COMPATIBILITY_API
