@@ -19,7 +19,7 @@ BuildRequires:	libpcap-devel
 BuildRequires:	libnids-devel
 BuildRequires:	libnet1-devel
 BuildRequires:	glibc-static
-BuildRequires:	openssl-devel >= 0.9.7ca
+BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
