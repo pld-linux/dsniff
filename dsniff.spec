@@ -15,7 +15,6 @@ BuildRequires:	XFree86-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	libnids-devel
 BuildRequires:	libnet-devel
-BuildRequires:	XFree86-devel
 BuildRequires:	glibc-static
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
