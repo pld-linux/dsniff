@@ -73,14 +73,12 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	install_prefix=$RPM_BUILD_ROOT
 
-gzip -9nf README*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README*
 %attr(755,root,root) %{_sbindir}/[a-u]*
 %attr(755,root,root) %{_sbindir}/webmitm
 %{_datadir}/%{name}
