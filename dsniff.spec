@@ -2,7 +2,7 @@ Summary:	Network audit tools.
 Summary(pl):	Narzêdzia do kontroli sieci
 Name:		dsniff
 Version:	2.3
-Release:	3
+Release:	4
 License:	BSD
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
@@ -17,6 +17,7 @@ BuildRequires:	libpcap-devel
 BuildRequires:	libnids-devel
 BuildRequires:	libnet-devel
 BuildRequires:	glibc-static
+BuildRequires:	openssl-devel >= 0.9.6a
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir		/etc/%{name}
