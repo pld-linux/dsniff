@@ -20,6 +20,7 @@ BuildRequires:	glibc-static
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	db3-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
