@@ -10,7 +10,6 @@ Group(pl):	Sieciowe/Narzêdzia
 Source0:	http://www.monkey.org/~dugsong/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-slist.patch
 Patch1:		%{name}-headers.patch
-Patch2:		%{name}-etc.patch
 URL:		http://www.monkey.org/~dugsong/
 BuildRequires:	XFree86-devel
 BuildRequires:	libpcap-devel
@@ -49,7 +48,6 @@ your local X display ahead of time.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 autoheader
