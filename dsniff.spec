@@ -2,7 +2,7 @@ Summary:	Network audit tools.
 Summary(pl):	Narzêdzia do kontroli sieci
 Name:		dsniff
 Version:	2.3
-Release:	4
+Release:	5
 License:	BSD
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
