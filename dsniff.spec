@@ -57,8 +57,8 @@ Netscape musi byæ wcze¶niej uruchomiony na lokalnym serwerze X.
 %patch3 -p1
 
 %build
-autoheader
-aclocal
+%{__autoheader}
+%{__aclocal}
 %{__autoconf}
 CFLAGS="%{rpmcflags} -I./missing"
 %configure \
