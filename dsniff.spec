@@ -17,10 +17,10 @@ BuildRequires:	libpcap-devel
 BuildRequires:	libnids-devel
 BuildRequires:	libnet-devel
 BuildRequires:	glibc-static
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.7a
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	db3-devel
+BuildRequires:	db-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
