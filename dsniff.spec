@@ -6,6 +6,7 @@ Release:	8
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	183e336a45e38013f3af840bddec44b4
 Patch0:		%{name}-slist.patch
 Patch1:		%{name}-headers.patch
 Patch2:		%{name}-ac.patch
