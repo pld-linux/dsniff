@@ -6,7 +6,7 @@ License:	BSD
 Group:		Networking/Utilities
 Group(pl):	Sieciowe/Narzêdzia
 URL:		http://www.monkey.org/~dugsong/
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://www.monkey.org/~dugsong/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:	XFree86-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	libnids-devel
