@@ -17,7 +17,7 @@ BuildRequires:	libpcap-devel
 BuildRequires:	libnids-devel
 BuildRequires:	libnet-devel
 BuildRequires:	glibc-static
-BuildRequires:	openssl-devel >= 0.9.6a
+BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
