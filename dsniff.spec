@@ -5,7 +5,7 @@ Version:	2.4
 Release:	0.b1.4
 License:	BSD
 Group:		Networking/Utilities
-Source0:	http://www.monkey.org/~dugsong/%{name}/beta/%{name}-%{version}b1.tar.gz
+Source0:	http://www.monkey.org/~dugsong/dsniff/beta/%{name}-%{version}b1.tar.gz
 # Source0-md5:	2f761fa3475682a7512b0b43568ee7d6
 Patch0:		%{name}-ac.patch
 Patch1:		%{name}-libnet1.patch
@@ -37,7 +37,7 @@ oprogramowania.
 Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Group:		Networking/Utilities
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	mozilla
 
 %description webspy
