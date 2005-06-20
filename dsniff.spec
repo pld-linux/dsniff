@@ -14,14 +14,14 @@ Patch2:		%{name}-clk_tck.patch
 #Patch3:		%{name}-gg.patch
 URL:		http://www.monkey.org/~dugsong/dsniff/
 BuildRequires:	XFree86-devel
-BuildRequires:	libpcap-devel
-BuildRequires:	libnids-devel
-BuildRequires:	libnet1-devel
-BuildRequires:	glibc-static
-BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
+BuildRequires:	glibc-static
+BuildRequires:	libnet1-devel
+BuildRequires:	libnids-devel
+BuildRequires:	libpcap-devel
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,16 +41,16 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	mozilla
 
 %description webspy
-webspy sends URLs sniffed from a client to your local Netscape browser
+webspy sends URLs sniffed from a client to your local Mozilla browser
 for display, updated in real-time (as the target surfs, your browser
-surfs along with them, automagically). Netscape must be running on
+surfs along with them, automagically). Mozilla must be running on
 your local X display ahead of time.
 
 %description webspy -l pl
-webspy przesy³a pods³uchane URLe do wy¶wietlenia w lokalnie
-uruchomionej przegl±darce Netscape Navigator. Adresy s± uaktualniane
-na bie¿±co (a wiêc przegl±dasz strony równolegle z pods³uchiwanym).
-Netscape musi byæ wcze¶niej uruchomiony na lokalnym serwerze X.
+webspy przesy³a pods³uchane URL-e do wy¶wietlenia w lokalnie
+uruchomionej przegl±darce Mozilla. Adresy s± uaktualniane na bie¿±co
+(a wiêc przegl±da siê strony równolegle z pods³uchiwanym). Mozilla
+musi byæ wcze¶niej uruchomiona na lokalnym serwerze X.
 
 %prep
 %setup -q
