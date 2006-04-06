@@ -13,7 +13,7 @@ Patch2:		%{name}-clk_tck.patch
 #ggsniff 1.2 from http://ggsniff.sourceforge.net/
 #Patch3:		%{name}-gg.patch
 URL:		http://www.monkey.org/~dugsong/dsniff/
-BuildRequires:	XFree86-devel
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
