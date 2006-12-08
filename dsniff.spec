@@ -1,8 +1,9 @@
+%define		_rel	7
 Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Name:		dsniff
 Version:	2.4
-Release:	0.b1.5
+Release:	0.b1.%{_rel}
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/dsniff/beta/%{name}-%{version}b1.tar.gz
@@ -10,6 +11,7 @@ Source0:	http://www.monkey.org/~dugsong/dsniff/beta/%{name}-%{version}b1.tar.gz
 Patch0:		%{name}-ac.patch
 Patch1:		%{name}-libnet1.patch
 Patch2:		%{name}-clk_tck.patch
+Patch3:		%{name}-openssl-0.9.8.patch
 #ggsniff 1.2 from http://ggsniff.sourceforge.net/
 #Patch3:		%{name}-gg.patch
 URL:		http://www.monkey.org/~dugsong/dsniff/
@@ -57,8 +59,7 @@ musi byæ wcze¶niej uruchomiona na lokalnym serwerze X.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-# no gg patch for this version
-#%patch3 -p1
+%patch3 -p1
 
 %build
 %{__autoheader}
