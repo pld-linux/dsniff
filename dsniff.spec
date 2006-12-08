@@ -1,8 +1,9 @@
+%define		_rel	7
 Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Name:		dsniff
 Version:	2.4
-Release:	0.b1.4
+Release:	0.b1.%{_rel}
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/dsniff/beta/%{name}-%{version}b1.tar.gz
@@ -14,7 +15,7 @@ Patch3:		%{name}-openssl-0.9.8.patch
 #ggsniff 1.2 from http://ggsniff.sourceforge.net/
 #Patch3:		%{name}-gg.patch
 URL:		http://www.monkey.org/~dugsong/dsniff/
-BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
@@ -39,7 +40,7 @@ Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
-Requires:	mozilla
+Requires:	mozilla-firefox
 
 %description webspy
 webspy sends URLs sniffed from a client to your local Mozilla browser
