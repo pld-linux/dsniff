@@ -1,8 +1,9 @@
+%define		_rel	7
 Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Name:		dsniff
 Version:	2.4
-Release:	0.b1.7
+Release:	0.b1.%{_rel}
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/dsniff/beta/%{name}-%{version}b1.tar.gz
