@@ -40,7 +40,7 @@ Summary:	Network audit tools
 Summary(pl):	Narzêdzia do kontroli sieci
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
-Requires:	mozilla
+Requires:	mozilla-firefox
 
 %description webspy
 webspy sends URLs sniffed from a client to your local Mozilla browser
