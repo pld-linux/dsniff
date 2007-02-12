@@ -1,6 +1,6 @@
 %define		_rel	7
 Summary:	Network audit tools
-Summary(pl.UTF-8):   Narzędzia do kontroli sieci
+Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Name:		dsniff
 Version:	2.4
 Release:	0.b1.%{_rel}
@@ -37,7 +37,7 @@ oprogramowania.
 
 %package webspy
 Summary:	Network audit tools
-Summary(pl.UTF-8):   Narzędzia do kontroli sieci
+Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Requires:	mozilla-firefox
