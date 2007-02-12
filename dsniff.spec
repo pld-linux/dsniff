@@ -1,6 +1,6 @@
 %define		_rel	7
 Summary:	Network audit tools
-Summary(pl):	Narzêdzia do kontroli sieci
+Summary(pl.UTF-8):   NarzÄ™dzia do kontroli sieci
 Name:		dsniff
 Version:	2.4
 Release:	0.b1.%{_rel}
@@ -30,14 +30,14 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Tools to audit network and to demonstrate the insecurity of cleartext
 network protocols. Please do not abuse this software.
 
-%description -l pl
-Narzêdzia do kontroli sieci oraz demonstracji braku zabezpieczeñ w
-nieszyfrowanych protoko³ach sieciowych. Proszê nie nadu¿ywaæ tego
+%description -l pl.UTF-8
+NarzÄ™dzia do kontroli sieci oraz demonstracji braku zabezpieczeÅ„ w
+nieszyfrowanych protokoÅ‚ach sieciowych. ProszÄ™ nie naduÅ¼ywaÄ‡ tego
 oprogramowania.
 
 %package webspy
 Summary:	Network audit tools
-Summary(pl):	Narzêdzia do kontroli sieci
+Summary(pl.UTF-8):   NarzÄ™dzia do kontroli sieci
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 Requires:	mozilla-firefox
@@ -48,11 +48,11 @@ for display, updated in real-time (as the target surfs, your browser
 surfs along with them, automagically). Mozilla must be running on
 your local X display ahead of time.
 
-%description webspy -l pl
-webspy przesy³a pods³uchane URL-e do wy¶wietlenia w lokalnie
-uruchomionej przegl±darce Mozilla. Adresy s± uaktualniane na bie¿±co
-(a wiêc przegl±da siê strony równolegle z pods³uchiwanym). Mozilla
-musi byæ wcze¶niej uruchomiona na lokalnym serwerze X.
+%description webspy -l pl.UTF-8
+webspy przesyÅ‚a podsÅ‚uchane URL-e do wyÅ›wietlenia w lokalnie
+uruchomionej przeglÄ…darce Mozilla. Adresy sÄ… uaktualniane na bieÅ¼Ä…co
+(a wiÄ™c przeglÄ…da siÄ™ strony rÃ³wnolegle z podsÅ‚uchiwanym). Mozilla
+musi byÄ‡ wczeÅ›niej uruchomiona na lokalnym serwerze X.
 
 %prep
 %setup -q
