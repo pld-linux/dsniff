@@ -68,6 +68,7 @@ musi być wcześniej uruchomiona na lokalnym serwerze X.
 CFLAGS="%{rpmcflags} -I./missing"
 %configure \
 	--libdir=%{_datadir}/%{name}
+sed -i -e 's#-L/usr/lib64 # #g' -e 's#-L/usr/lib # #g' Makefile
 %{__make}
 
 %install
