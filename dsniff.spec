@@ -1,9 +1,9 @@
-%define		_rel	9
+%define		rel	10
 Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Name:		dsniff
 Version:	2.4
-Release:	0.b1.%{_rel}
+Release:	0.b1.%{rel}
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/dsniff/beta/%{name}-%{version}b1.tar.gz
@@ -17,6 +17,7 @@ Patch3:		%{name}-openssl-0.9.8.patch
 URL:		http://www.monkey.org/~dugsong/dsniff/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	cpp
 BuildRequires:	db-devel
 BuildRequires:	glibc-static
 BuildRequires:	libnet1-devel
