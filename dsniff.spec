@@ -12,10 +12,9 @@ Patch0:		%{name}-ac.patch
 Patch1:		%{name}-libnet1.patch
 Patch2:		%{name}-clk_tck.patch
 Patch3:		%{name}-openssl-0.9.8.patch
-#ggsniff 1.2 from http://ggsniff.sourceforge.net/
-#Patch3:		%{name}-gg.patch
+# ggsniff 1.2 from http://ggsniff.sourceforge.net/
+#Patch3:	%{name}-gg.patch
 URL:		http://www.monkey.org/~dugsong/dsniff/
-BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
@@ -24,6 +23,12 @@ BuildRequires:	libnet1-devel
 BuildRequires:	libnids-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	rpm >= 4.4.9-56
+%if "%{pld_release}" == "ac"
+BuildRequires:	XFree86-devel
+%else
+BuildRequires:	xorg-lib-libX11-devel
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,8 +50,8 @@ Requires:	mozilla-firefox
 %description webspy
 webspy sends URLs sniffed from a client to your local Mozilla browser
 for display, updated in real-time (as the target surfs, your browser
-surfs along with them, automagically). Mozilla must be running on
-your local X display ahead of time.
+surfs along with them, automagically). Mozilla must be running on your
+local X display ahead of time.
 
 %description webspy -l pl.UTF-8
 webspy przesyła podsłuchane URL-e do wyświetlenia w lokalnie
