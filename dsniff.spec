@@ -1,4 +1,4 @@
-%define		rel	11
+%define		rel	12
 Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Name:		dsniff
