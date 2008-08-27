@@ -1,4 +1,7 @@
-%define		rel	12
+# TODO
+# - make R: mozilla-firefox something generic (it uses X11 and remote.c to find
+#   browser window to send openURL(%s, %s) command there)
+%define		rel	13
 Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Name:		dsniff
@@ -46,7 +49,11 @@ Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
+%if "%{pld_release}" == "ac"
 Requires:	mozilla-firefox
+%else
+Requires:	iceweasel
+%endif
 
 %description webspy
 webspy sends URLs sniffed from a client to your local Mozilla browser
