@@ -28,6 +28,7 @@ BuildRequires:	libnids-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpm >= 4.4.9-56
+BuildRequires:	xorg-lib-libXmu-devel
 %if "%{pld_release}" == "ac"
 BuildRequires:	XFree86-devel
 %else
