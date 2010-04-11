@@ -1,7 +1,7 @@
 # TODO
 # - make R: mozilla-firefox something generic (it uses X11 and remote.c to find
 #   browser window to send openURL(%s, %s) command there)
-%define		rel	17
+%define		rel	18
 Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Name:		dsniff
@@ -83,7 +83,7 @@ CFLAGS="%{rpmcflags} -I./missing"
 %configure \
 	--libdir=%{_datadir}/%{name}
 sed -i -e 's#-L/usr/lib64 # #g' -e 's#-L/usr/lib # #g' Makefile
-%{__make}
+%{__make} libmissing.a all
 
 %install
 rm -rf $RPM_BUILD_ROOT
