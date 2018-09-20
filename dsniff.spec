@@ -1,7 +1,7 @@
 # TODO
 # - make R: mozilla-firefox something generic (it uses X11 and remote.c to find
 #   browser window to send openURL(%s, %s) command there)
-%define		rel	26
+%define		rel	27
 Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Name:		dsniff
@@ -11,10 +11,7 @@ License:	BSD
 Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/dsniff/beta/%{name}-%{version}b1.tar.gz
 # Source0-md5:	2f761fa3475682a7512b0b43568ee7d6
-Patch0:		%{name}-ac.patch
-Patch1:		%{name}-libnet1.patch
-Patch2:		%{name}-clk_tck.patch
-Patch3:		%{name}-openssl-0.9.8.patch
+Patch0:		debian.patch
 # ggsniff 1.2 from http://ggsniff.sourceforge.net/
 #Patch3:	%{name}-gg.patch
 URL:		http://www.monkey.org/~dugsong/dsniff/
@@ -23,7 +20,7 @@ BuildRequires:	automake
 BuildRequires:	cpp
 BuildRequires:	db-devel
 BuildRequires:	glibc-static
-BuildRequires:	libnet1-devel
+BuildRequires:	libnet-devel
 BuildRequires:	libnids-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	openssl-devel >= 0.9.7d
@@ -71,9 +68,6 @@ musi być wcześniej uruchomiona na lokalnym serwerze X.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 %build
 %{__autoheader}
