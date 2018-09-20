@@ -68,9 +68,9 @@ musi być wcześniej uruchomiona na lokalnym serwerze X.
 %prep
 %setup -q
 %patch0 -p1
+rm configure
 
 %build
-rm configure
 %{__autoheader}
 %{__aclocal}
 %{__autoconf}
