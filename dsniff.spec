@@ -1,7 +1,7 @@
 # TODO
-# - make R: mozilla-firefox something generic (it uses X11 and remote.c to find
+# - make R: firefox something generic (it uses X11 and remote.c to find
 #   browser window to send openURL(%s, %s) command there)
-%define		rel	28
+%define		rel	29
 Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Name:		dsniff
@@ -12,6 +12,8 @@ Group:		Networking/Utilities
 Source0:	http://www.monkey.org/~dugsong/dsniff/beta/%{name}-%{version}b1.tar.gz
 # Source0-md5:	2f761fa3475682a7512b0b43568ee7d6
 Patch0:		debian.patch
+Patch1:		%{name}-libdir.patch
+Patch2:		%{name}-nolibs.patch
 # ggsniff 1.2 from http://ggsniff.sourceforge.net/
 #Patch3:	%{name}-gg.patch
 URL:		http://www.monkey.org/~dugsong/dsniff/
@@ -20,17 +22,13 @@ BuildRequires:	automake
 BuildRequires:	cpp
 BuildRequires:	db-devel
 BuildRequires:	glibc-static
-BuildRequires:	libnet-devel
+BuildRequires:	libnet-devel >= 1:1.1
 BuildRequires:	libnids-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpm >= 4.4.9-56
-%if "%{pld_release}" == "ac"
-BuildRequires:	XFree86-devel
-%else
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXmu-devel
-%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -47,38 +45,38 @@ Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
-%if "%{pld_release}" == "ac"
-Requires:	mozilla-firefox
-%else
 Requires:	firefox
-%endif
 
 %description webspy
-webspy sends URLs sniffed from a client to your local Mozilla browser
+webspy sends URLs sniffed from a client to your local Firefox browser
 for display, updated in real-time (as the target surfs, your browser
-surfs along with them, automagically). Mozilla must be running on your
+surfs along with them, automagically). Firefox must be running on your
 local X display ahead of time.
 
 %description webspy -l pl.UTF-8
 webspy przesyła podsłuchane URL-e do wyświetlenia w lokalnie
-uruchomionej przeglądarce Mozilla. Adresy są uaktualniane na bieżąco
-(a więc przegląda się strony równolegle z podsłuchiwanym). Mozilla
-musi być wcześniej uruchomiona na lokalnym serwerze X.
+uruchomionej przeglądarce Firefox. Adresy są uaktualniane na bieżąco
+(a więc przegląda się strony równolegle z podsłuchiwanym). Firefox
+musi być wcześniej uruchomiony na lokalnym serwerze X.
 
 %prep
 %setup -q
 %patch0 -p1
-rm configure
+%patch1 -p1
+%patch2 -p1
+
+%{__rm} configure
 
 %build
-%{__autoheader}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %configure \
 	--libdir=%{_datadir}/%{name}
 
-sed -i -e 's#-L/usr/lib64 # #g' -e 's#-L/usr/lib # #g' Makefile
-%{__make} libmissing.a all
+# don't build libmissing.a with progs in parallel 
+%{__make} libmissing.a
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -91,14 +89,36 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README*
-%attr(755,root,root) %{_sbindir}/[a-u]*
+%doc CHANGES LICENSE README TODO
+%attr(755,root,root) %{_sbindir}/arpspoof
+%attr(755,root,root) %{_sbindir}/dnsspoof
+%attr(755,root,root) %{_sbindir}/dsniff
+%attr(755,root,root) %{_sbindir}/filesnarf
+%attr(755,root,root) %{_sbindir}/macof
+%attr(755,root,root) %{_sbindir}/mailsnarf
+%attr(755,root,root) %{_sbindir}/msgsnarf
+%attr(755,root,root) %{_sbindir}/sshmitm
+%attr(755,root,root) %{_sbindir}/sshow
+%attr(755,root,root) %{_sbindir}/tcpkill
+%attr(755,root,root) %{_sbindir}/tcpnice
+%attr(755,root,root) %{_sbindir}/urlsnarf
 %attr(755,root,root) %{_sbindir}/webmitm
 %{_datadir}/%{name}
-%{_mandir}/man8/[a-u]*
-%{_mandir}/man8/webmitm*
+%{_mandir}/man8/arpspoof.8*
+%{_mandir}/man8/dnsspoof.8*
+%{_mandir}/man8/dsniff.8*
+%{_mandir}/man8/filesnarf.8*
+%{_mandir}/man8/macof.8*
+%{_mandir}/man8/mailsnarf.8*
+%{_mandir}/man8/msgsnarf.8*
+%{_mandir}/man8/sshmitm.8*
+%{_mandir}/man8/sshow.8*
+%{_mandir}/man8/tcpkill.8*
+%{_mandir}/man8/tcpnice.8*
+%{_mandir}/man8/urlsnarf.8*
+%{_mandir}/man8/webmitm.8*
 
 %files webspy
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/webspy
-%{_mandir}/man8/webspy*
+%{_mandir}/man8/webspy.8*

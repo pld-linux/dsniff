@@ -1,0 +1,60 @@
+--- dsniff-2.4/configure.in.orig	2020-05-23 16:39:43.240198026 +0200
++++ dsniff-2.4/configure.in	2020-05-23 16:57:33.264401208 +0200
+@@ -122,18 +122,17 @@
+      fi
+      ;;
+   esac ],
+-[ for dir in ${prefix}/BerkeleyDB.3.1 ${prefix}/BerkeleyDB.3.0 \
+-	     ${prefix}/BerkeleyDB ${prefix}/db ${prefix}; do
++[ for dir in ${prefix}; do
+     if test -f ${dir}/include/db_185.h; then
+        AC_DEFINE(HAVE_DB_185_H)
+        DBINC="-I${dir}/include"
+-       DBLIB="-L${dir}/lib -ldb"
++       DBLIB="-ldb"
+        have_db=yes
+        break
+     elif test -f ${dir}/include/db.h; then
+        AC_DEFINE(HAVE_DB_H)
+        DBINC="-I${dir}/include"
+-       DBLIB="-L${dir}/lib -ldb"
++       DBLIB="-ldb"
+        have_db=yes
+        break
+     fi
+@@ -190,7 +189,7 @@
+   esac ],
+ [ if test -f ${prefix}/include/pcap.h; then
+      PCAPINC="-I${prefix}/include"
+-     PCAPLIB="-L${prefix}/lib -lpcap"
++     PCAPLIB="-lpcap"
+   elif test -f /usr/include/pcap/pcap.h; then
+      PCAPINC="-I/usr/include/pcap"
+      PCAPLIB="-lpcap"
+@@ -235,7 +234,7 @@
+ [ if test -f ${prefix}/include/libnet.h; then
+      CFLAGS="$CFLAGS `${prefix}/bin/libnet-config --defines`"
+      LNETINC="-I${prefix}/include"
+-     LNETLIB="-L${prefix}/lib -lnet"
++     LNETLIB="-lnet"
+   elif test -f /usr/include/libnet.h; then
+      CFLAGS="$CFLAGS `libnet-config --defines`"
+      LNETLIB="-lnet"
+@@ -275,7 +274,7 @@
+   esac ],
+ [ if test -f ${prefix}/include/nids.h; then
+      NIDSINC="-I${prefix}/include"
+-     NIDSLIB="-L${prefix}/lib -lnids"
++     NIDSLIB="-lnids"
+   elif test -f /usr/include/nids.h; then
+      NIDSLIB="-lnids"
+   else
+@@ -322,7 +321,7 @@
+   esac ],
+ [ if test -f ${prefix}/include/openssl/ssl.h; then
+      SSLINC="-I${prefix}/include"
+-     SSLLIB="-L${prefix}/lib -lssl -lcrypto"
++     SSLLIB="-lssl -lcrypto"
+   elif test -f ${prefix}/ssl/include/openssl/ssl.h; then
+      SSLINC="-I${prefix}/ssl/include"
+      SSLLIB="-L${prefix}/ssl/lib -lssl -lcrypto"

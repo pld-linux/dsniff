@@ -1,0 +1,13 @@
+--- dsniff-2.4/configure.in.orig	2020-05-23 16:59:52.793645313 +0200
++++ dsniff-2.4/configure.in	2020-05-23 17:12:59.582716244 +0200
+@@ -53,8 +53,8 @@
+ AC_CHECK_FUNCS(gethostname socket strdup strstr)
+ AC_CHECK_LIB(rpcsvc, xdr_fhstatus)
+ dnl XXX - Solaris sux.
+-AC_CHECK_LIB(socket, socket)
+-AC_CHECK_LIB(nsl, gethostbyname)
++AC_SEARCH_LIBS(socket, socket)
++AC_SEARCH_LIBS(gethostbyname, nsl)
+ dnl XXX - feh, everything except OpenBSD sux.
+ AC_CHECK_LIB(resolv, dn_expand)
+ AC_CHECK_LIB(resolv, __dn_expand)
