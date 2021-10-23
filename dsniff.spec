@@ -1,7 +1,7 @@
 # TODO
 # - make R: firefox something generic (it uses X11 and remote.c to find
 #   browser window to send openURL(%s, %s) command there)
-%define		rel	29
+%define		rel	30
 Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Name:		dsniff
@@ -14,6 +14,8 @@ Source0:	http://www.monkey.org/~dugsong/dsniff/beta/%{name}-%{version}b1.tar.gz
 Patch0:		debian.patch
 Patch1:		%{name}-libdir.patch
 Patch2:		%{name}-nolibs.patch
+Patch3:		pcap.patch
+Patch4:		rpc.patch
 # ggsniff 1.2 from http://ggsniff.sourceforge.net/
 #Patch3:	%{name}-gg.patch
 URL:		http://www.monkey.org/~dugsong/dsniff/
@@ -25,6 +27,7 @@ BuildRequires:	glibc-static
 BuildRequires:	libnet-devel >= 1:1.1
 BuildRequires:	libnids-devel
 BuildRequires:	libpcap-devel
+BuildRequires:	libtirpc-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	xorg-lib-libX11-devel
@@ -64,6 +67,8 @@ musi być wcześniej uruchomiony na lokalnym serwerze X.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %{__rm} configure
 

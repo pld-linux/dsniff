@@ -1,0 +1,79 @@
+--- dsniff-2.4/pcaputil.h~	2001-03-15 09:33:06.000000000 +0100
++++ dsniff-2.4/pcaputil.h	2021-10-23 22:47:00.870619350 +0200
+@@ -11,9 +11,9 @@
+ #ifndef PCAPUTIL_H
+ #define PCAPUTIL_H
+ 
+-pcap_t *pcap_init(char *intf, char *filter, int snaplen);
++pcap_t *dsniff_pcap_init(char *intf, char *filter, int snaplen);
+ 
+-int	pcap_dloff(pcap_t *pd);
++int	dsniff_pcap_dloff(pcap_t *pd);
+ 
+ char   *copy_argv(char **argv);
+ 
+--- dsniff-2.4/pcaputil.c~	2021-10-23 22:42:08.000000000 +0200
++++ dsniff-2.4/pcaputil.c	2021-10-23 22:47:56.183933244 +0200
+@@ -32,7 +32,7 @@
+ #endif
+ 
+ int
+-pcap_dloff(pcap_t *pd)
++dsniff_pcap_dloff(pcap_t *pd)
+ {
+ 	int offset = -1;
+ 	
+@@ -63,7 +63,7 @@
+ }
+ 
+ pcap_t *
+-pcap_init(char *intf, char *filter, int snaplen)
++dsniff_pcap_init(char *intf, char *filter, int snaplen)
+ {
+ 	pcap_t *pd;
+ 	u_int net, mask;
+--- dsniff-2.4/tcpkill.c~	2021-10-23 22:42:08.000000000 +0200
++++ dsniff-2.4/tcpkill.c	2021-10-23 22:49:35.162844763 +0200
+@@ -130,10 +130,10 @@
+ 	
+ 	filter = copy_argv(argv);
+ 	
+-	if ((pd = pcap_init(intf, filter, 64)) == NULL)
++	if ((pd = dsniff_pcap_init(intf, filter, 64)) == NULL)
+ 		errx(1, "couldn't initialize sniffing");
+ 
+-	if ((pcap_off = pcap_dloff(pd)) < 0)
++	if ((pcap_off = dsniff_pcap_dloff(pd)) < 0)
+ 		errx(1, "couldn't determine link layer offset");
+ 	
+ 	if ((l = libnet_init(LIBNET_RAW4, intf, libnet_ebuf)) == NULL)
+--- dsniff-2.4/tcpnice.c~	2021-10-23 22:42:08.000000000 +0200
++++ dsniff-2.4/tcpnice.c	2021-10-23 22:49:52.935900084 +0200
+@@ -204,10 +204,10 @@
+ 	
+ 	filter = copy_argv(argv);
+ 	
+-	if ((pd = pcap_init(intf, filter, 128)) == NULL)
++	if ((pd = dsniff_pcap_init(intf, filter, 128)) == NULL)
+ 		errx(1, "couldn't initialize sniffing");
+ 
+-	if ((pcap_off = pcap_dloff(pd)) < 0)
++	if ((pcap_off = dsniff_pcap_dloff(pd)) < 0)
+ 		errx(1, "couldn't determine link layer offset");
+ 	
+ 	if ((l = libnet_init(LIBNET_RAW4, intf, libnet_ebuf)) == NULL)
+--- dsniff-2.4/dnsspoof.c~	2021-10-23 22:42:08.000000000 +0200
++++ dsniff-2.4/dnsspoof.c	2021-10-23 22:50:13.142260253 +0200
+@@ -309,10 +309,10 @@
+ 	else snprintf(buf, sizeof(buf), "udp dst port 53 and not src %s",
+ 		      libnet_addr2name4(lnet_ip, LIBNET_DONT_RESOLVE));
+ 	
+-	if ((pcap_pd = pcap_init(dev, buf, 128)) == NULL)
++	if ((pcap_pd = dsniff_pcap_init(dev, buf, 128)) == NULL)
+ 		errx(1, "couldn't initialize sniffing");
+ 
+-	if ((pcap_off = pcap_dloff(pcap_pd)) < 0)
++	if ((pcap_off = dsniff_pcap_dloff(pcap_pd)) < 0)
+ 		errx(1, "couldn't determine link layer offset");
+ 	
+ 	if ((l = libnet_init(LIBNET_RAW4, dev, ebuf)) == NULL)
