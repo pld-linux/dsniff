@@ -1,7 +1,7 @@
 # TODO
 # - make R: firefox something generic (it uses X11 and remote.c to find
 #   browser window to send openURL(%s, %s) command there)
-%define		rel	30
+%define		rel	31
 Summary:	Network audit tools
 Summary(pl.UTF-8):	Narzędzia do kontroli sieci
 Name:		dsniff
@@ -26,9 +26,11 @@ BuildRequires:	db-devel
 BuildRequires:	glibc-static
 BuildRequires:	libnet-devel >= 1:1.1
 BuildRequires:	libnids-devel
+BuildRequires:	libnsl-devel
 BuildRequires:	libpcap-devel
 BuildRequires:	libtirpc-devel
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	rpcsvc-proto
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXmu-devel
