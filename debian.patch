@@ -2273,7 +2273,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 +			break;
 +		free(*ifaces);
 +		ifaces_size *= 2;
-+		ifaces = malloc(ifaces_size);
++		*ifaces = malloc(ifaces_size);
 +	}
 +	*count = param.ifc_len / sizeof(struct ifreq);
 +	close(sock);
